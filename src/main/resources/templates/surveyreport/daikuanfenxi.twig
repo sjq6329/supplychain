@@ -1,0 +1,108 @@
+<div id="formContent">
+   <form id="appFormSetLoad" name="appFormSetLoad" class="form_biaodan">
+    <div class="form_row">
+     <div>
+      贷款原因：
+     </div>
+     <div>
+      {{ data.loanReason }}
+     </div>
+    </div>
+    <div class="form_row">
+     <div>
+      贷款用途：
+     </div>
+     <div>
+     {{ data.loanPurpose }}
+     </div>
+    </div>
+    <div class="form_row">
+     <div>
+      还款来源：
+     </div>
+     <div>
+     {{ data.payment }}
+     </div>
+    </div>
+    <div class="form_row">
+     <div>
+      额度利率及期限：
+     </div>
+     <div>
+     {{ data.creditRateAnalysis }}
+     </div>
+    </div>
+    <div class="form_row">
+     <div>
+      其他：
+     </div>
+     <div>
+     {{ data.otherWork }}
+     </div>
+    </div>
+    <div class="form_row" table="1">
+     <div>
+      外部贷款记录
+     </div>
+     <table class="form_table" border="0" cellspacing="1" cellpadding="0" id="loanExJson" from="config" stype="0">
+      <thead>
+       <tr>
+        <th>融资来源（银行/私人/其他)</th>
+        <th>金额(元)</th>
+        <th>还款余额(元)</th>
+        <th>期限（月）</th>
+        <th>分期还款额(元)</th>
+        <th>担保方式</th>
+        <th>用途</th>
+        <th>逾期信息(有/无)</th>
+       </tr>
+      </thead>
+      <tbody>
+       {% for row in data.appFormSetloanThJson %}
+       <tr>
+        <td>{{ row.thMoney }}</td>
+        <td>{{ row.thRepayBalance }}</td>
+        <td>{{ row.thPeriod }}</td>
+        <td>{{ row.thRePeriod }}</td>
+        <td>{{ row.thGuaranteeMode }}</td>
+        <td>{{ row.thPurpose }}</td>
+        <td>{{ row.thOverdue }}</td>
+       </tr>
+       {% endfor %}
+      </tbody>
+     </table>
+    </div>
+    <div class="form_row" table="1">
+     <div>
+      本机构贷款记录
+     </div>
+     <table class="form_table" border="0" cellspacing="1" cellpadding="0" id="loanThJson" from="out" stype="2">
+      <thead>
+       <tr>
+        <th>金额(元)</th>
+        <th>还款余额(元)</th>
+        <th>期限（月）</th>
+        <th>剩余期数</th>
+        <th>担保方式</th>
+        <th>用途</th>
+        <th>逾期信息(有/无)</th>
+       </tr>
+      </thead>
+      <tbody>
+        {% for row in data.appFormSetloanExJson %}
+           <tr>
+            <td>{{ row.exFinanceSources }}</td>
+            <td>{{ row.exMoney }}</td>
+            <td>{{ row.exRepayBalance }}</td>
+            <td>{{ row.exPeriod }}</td>
+            <td>{{ row.exInstallmentAmount }}</td>
+            <td>{{ row.exGuaranteeMode }}</td>
+            <td>{{ row.exPurpose }}</td>
+            <td>{{ row.exOverdue }}</td>
+           </tr>
+         {% endfor %}
+      </tbody>
+     </table>
+    </div>
+   </form>
+  </div>

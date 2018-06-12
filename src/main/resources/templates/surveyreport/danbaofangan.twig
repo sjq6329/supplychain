@@ -1,0 +1,152 @@
+<div id="formContent">
+
+   {% for item in data %}
+   <form id="form0" class="form_biaodan tijiao">
+    <div class="form_row" label="1">
+     <div style="text-align:left;height:30px; line-height:30px; background-color:#CCCCCC;font-weight:bold;">
+      基本信息
+     </div>
+    </div>
+    <!--担保人uid-->
+    <div class="form_row_item" text="1" style="width: 45%;">
+     <label class="theTitle">借款人名称：</label>
+     {{ item.danBaoPlan.trueName }}
+    </div>
+    <div class="form_row_item">
+     <label>保证类型：</label>
+     {{ danbaoNames[item.danBaoPlan.dbtype] }}
+    </div>
+    <div class="form_row_item" text="1" style="display: none;">
+     <label>基本户银行：</label>
+     {{ item.guaranteeInf.basicBank }}
+    </div>
+    <div class="form_row_item" text="1" style="display: none;">
+     <label>贷款卡号：</label>
+     {{ item.guaranteeInf.cardNumber }}
+    </div>
+    <div class="form_row_item" style="display: none;">
+     <label>是否集团供应链客户：</label>
+     {% if item.guaranteeInf.isCusSupplychain == 1 %}是{% else %}否{% endif %}
+    </div>
+    <div class="form_row_item" text="1" style="display: none;">
+     <label>注册资本：</label>
+     {{ item.guaranteeInf.registeredCapital }} {{ item.guaranteeInf.registeredCapitalUnit }}
+    </div>
+    <div class="form_row_item" text="1">
+     <label class="lastYearTotalAssetsTitle">当前总资产：</label>
+     {{ item.guaranteeInf.lastYearTotalAssets }}
+     <span>(万元)</span>
+    </div>
+    <div class="form_row_item" text="1">
+     <label class="lastYearLiabilitiesTitle">当前总负债：</label>
+     {{ item.guaranteeInf.lastYearLiabilities }}
+     <span>(万元)</span>
+    </div>
+    <div class="form_row_item" text="1" style="display: none;">
+     <label>所有者权益：</label>
+     {{ item.guaranteeInf.ownerEquity }}
+     <span>(万元)</span>
+    </div>
+    <div class="form_row_item" text="1">
+     <label>资产负债率：</label>
+     {{ item.guaranteeInf.assetLiabilityRatio }}
+     <span>%</span>
+    </div>
+    <div class="form_row_item" text="1" style="display: none;">
+     <label>保证人扣除无效资产后的所有者权益：</label>
+     {{ item.guaranteeInf.actualEquity }}
+     <span>(万元)</span>
+    </div>
+    <div class="form_row_item" text="1">
+     <label>我公司借款余额：</label>
+     {{ item.guaranteeInf.companyBalance }}
+     <span>(万元)</span>
+    </div>
+    <div class="form_row_item" text="1" style="display: none;">
+     <label>上年度销售收入：</label>
+     {{ item.guaranteeInf.lastYearSalesRevenue }}
+     <span>(万元)</span>
+    </div>
+    <div class="form_row" table="1">
+     <div>
+      抵押物信息
+     </div>
+     <table class="form_table" border="0" cellspacing="1" cellpadding="0">
+      <thead>
+       <tr>
+        <th>抵押物名称</th>
+        <th>抵押物类型</th>
+        <!--<th>抵押物价值(元)</th>-->
+        <th>抵押物估值(元)</th>
+       </tr>
+      </thead>
+      <tbody id="dywlist">
+        {% for diya in item.diayList %}
+        <tr>
+            <td>{{ diya.name }}</td>
+            <td>{{ diya.cateName }}</td>
+            <td>{{ number_format(diya.comEvalValue, 2, '.', ',') }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+     </table>
+    </div>
+    <div class="form_row_item" text="1">
+     <label>所有权人：</label>
+     {{ item.guaranteeInf.owner }}
+    </div>
+    <div class="form_row_item" text="1">
+     <label>使用权人：</label>
+     {{ item.guaranteeInf.user }}
+    </div>
+    <div class="form_row_item" text="1">
+     <label>评估总价值：</label>
+     {{ item.guaranteeInf.totalValuation }}
+     <span>(万元)</span>
+    </div>
+    <div class="form_row_item" text="1">
+     <label>账面净值：</label>
+     {{ item.guaranteeInf.bookValue }}
+     <span>(万元)</span>
+    </div>
+    <div class="form_row_item" text="1">
+     <label>抵（质）押率：</label>
+     {{ item.guaranteeInf.mortgageRate }}
+     <span>%</span>
+    </div>
+    <div class="form_row_item">
+     <label>产权证明：</label>
+     {{ chanquanzhengming[item.guaranteeInf.certificatePropertyRights] }}
+    </div>
+    <div class="form_row_item">
+     <label>评估部门：</label>
+     {{ pinggubumen[item.guaranteeInf.evaluationDepartment] }}
+    </div>
+    <div class="form_row">
+     <div>
+      担保人基本情况补充说明（需详尽说明担保人与借款人关系）：
+     </div>
+     <div>
+        {{ item.guaranteeInf.guarantorBasicSupplement }}
+     </div>
+    </div>
+    <div class="form_row">
+     <div>
+      担保人财务情况补充说明：
+     </div>
+     <div>
+        {{ item.guaranteeInf.guarantorFinanceSupplement }}
+     </div>
+    </div>
+    <div class="form_row">
+     <div>
+      抵（质）押情况补充说明：
+     </div>
+     <div>
+        {{ item.guaranteeInf.guarantorMortgageSupplement }}
+     </div>
+    </div>
+   </form>
+   {% endfor %}
+
+  </div>

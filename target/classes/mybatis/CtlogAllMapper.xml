@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.renrun.supplychain.app.mapper.CtlogAllMapper">
+
+
+    <insert id="insertCtlogAll" parameterType="com.renrun.supplychain.app.entity.CtlogAll" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO zzz_ctlog_all SET tablety=#{tablety},tablety_id=#{tabletyId},ty=#{ty},ty_name=#{tyName},
+        role_id=#{roleId},role_name=#{roleName},reg_uid=#{regUid},reg_uid_name=#{regUidName},content=#{content},
+        url=#{url},ip=#{ip},addr=#{addr},ie=#{ie},method=#{method},post=#{post},
+        time_h=NOW()
+        <selectKey keyProperty="id" order="AFTER" resultType="Integer">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+    </insert>
+
+    <select id="getCtlogAllList" parameterType="com.renrun.supplychain.app.entity.CtlogAllSearch"
+            resultType="com.renrun.supplychain.app.entity.CtlogAll">
+        select *
+        from zzz_ctlog_all
+        where 1=1
+        <if test="tablety != null  and tablety !='' ">
+            AND tablety = #{tablety}
+        </if>
+        <if test="tabletyId != null  and tabletyId !='' ">
+            AND tablety_id = #{tabletyId}
+        </if>
+        <if test="ty != null  and ty !='' ">
+            AND ty = #{ty}
+        </if>
+        <if test="tyName != null  and tyName !='' ">
+            AND ty_name = #{tyName}
+        </if>
+        <if test="roleId != null  and roleId !='' ">
+            AND role_id LIKE concat('%',#{roleId}, '%')
+        </if>
+        <if test="regUid != null  and regUid !='' ">
+            <if test="regUid == -1">
+                AND reg_uid != 1
+            </if>
+            AND reg_uid = #{regUid}
+        </if>
+        <if test="regUidName != null  and regUidName !='' ">
+            AND reg_uid_name LIKE concat('%',#{regUidName}, '%')
+        </if>
+        <if test="content != null  and content !='' ">
+            AND content LIKE concat('%',#{content}, '%')
+        </if>
+
+        <if test="endTime != null and endTime !='' ">
+            <![CDATA[
+                AND time_h <= #{endTime}
+              ]]>
+        </if>
+        <if test="startTime != null and startTime !='' ">
+            <![CDATA[
+                AND time_h >= #{startTime}
+              ]]>
+        </if>
+        <if test="search != null">
+            AND (
+            OR reg_uid_name LIKE concat('%', #{search} ,'%')
+            OR content LIKE concat('%', #{search}, '%')
+            )
+        </if>
+        order by time_l DESC
+        <if test="pager != null and pager.size != null">
+            LIMIT
+            <if test="pager.start != null">#{pager.start},</if>
+            #{pager.size}
+        </if>
+
+    </select>
+    <select id="getCtlogAllCount" parameterType="com.renrun.supplychain.app.entity.CtlogAllSearch" resultType="Integer">
+        SELECT count(*) FROM zzz_ctlog_all
+        WHERE 1=1
+        <if test="tablety != null  and tablety !='' ">
+            AND tablety = #{tablety}
+        </if>
+        <if test="tabletyId != null  and tabletyId !='' ">
+            AND tablety_id = #{tabletyId}
+        </if>
+        <if test="ty != null  and ty !='' ">
+            AND ty = #{ty}
+        </if>
+        <if test="tyName != null  and tyName !='' ">
+            AND ty_name = #{tyName}
+        </if>
+        <if test="roleId != null  and roleId !='' ">
+            AND role_id LIKE concat('%',#{roleId}, '%')
+        </if>
+        <if test="roleName != null  and roleName !='' ">
+            AND roleName = #{roleName}
+        </if>
+        <if test="regUid != null  and regUid !='' ">
+            AND reg_uid = #{regUid}
+        </if>
+        <if test="regUidName != null  and regUidName !='' ">
+            AND reg_uid_name LIKE concat('%',#{regUidName}, '%')
+        </if>
+        <if test="content != null  and content !='' ">
+            AND content LIKE concat('%',#{content}, '%')
+        </if>
+
+        <if test="endTime != null and endTime !='' ">
+            <![CDATA[
+                AND time_h <= #{endTime}
+              ]]>
+        </if>
+        <if test="startTime != null and startTime !='' ">
+            <![CDATA[
+                AND time_h >= #{startTime}
+              ]]>
+        </if>
+    </select>
+
+    <select id="getCtlogTy" parameterType="String" resultType="com.renrun.supplychain.app.entity.CtlogTy">
+        SELECT * FROM ctlog_ty WHERE ty =#{ty} limit 1
+    </select>
+</mapper>

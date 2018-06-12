@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.renrun.supplychain.app.mapper.LogConfigMapper">
+
+    <insert id="insertDdos" parameterType="String" useGeneratedKeys="true" keyProperty="id">
+        insert delayed into xx_02 (ip,time_h,num) value (#{ip},NOW(),1) on duplicate key update num=num+1,time_h=NOW()
+        <selectKey keyProperty="bid" order="AFTER" resultType="Integer">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+    </insert>
+
+    <select id="pclLogForNow" statementType="CALLABLE" parameterType="com.renrun.supplychain.app.entity.LogConfig">
+        call pcl_Log_ForNow( #{tablety},#{id},#{ty},#{val},#{withid},#{des} )
+    </select>
+
+    <select id="pclLogSingleForNow" statementType="CALLABLE" parameterType="com.renrun.supplychain.app.entity.LogConfig">
+        call pcl_LogSingle_ForNow( #{tablety},#{id},#{ty},#{val},#{withid},#{des},#{os} )
+    </select>
+
+    <select id="pclCTByHourForNow" statementType="CALLABLE" parameterType="com.renrun.supplychain.app.entity.LogConfig">
+        call pcl_CT_ByHour_ForNow( #{tablety},#{id},#{ty},#{val} )
+    </select>
+
+    <select id="pclCTByDayForNow" statementType="CALLABLE" parameterType="com.renrun.supplychain.app.entity.LogConfig">
+        call pcl_CT_ByDay_ForNow( #{tablety},#{id},#{ty},#{val})
+    </select>
+
+    <select id="pclCTByMonthForNow" statementType="CALLABLE" parameterType="com.renrun.supplychain.app.entity.LogConfig">
+        call pcl_CT_ByMonth_ForNow( #{tablety},#{id},#{ty},#{val})
+    </select>
+
+    <select id="pclCTByTop" statementType="CALLABLE" parameterType="com.renrun.supplychain.app.entity.LogConfig">
+        call pcl_CT_ByTop( #{tablety},#{id},#{ty},#{val})
+    </select>
+
+    <select id="pclCTFromHourForNow" statementType="CALLABLE" parameterType="com.renrun.supplychain.app.entity.LogConfig">
+        call pcl_CT_FromHour_ForNow( #{tablety},#{id},#{ty},#{val})
+    </select>
+
+    <select id="pclCTFromDayForNow" statementType="CALLABLE" parameterType="com.renrun.supplychain.app.entity.LogConfig">
+        call pcl_CT_FromDay_ForNow( #{tablety},#{id},#{ty},#{val})
+    </select>
+    <select id="pclCTFromMonthForNow" statementType="CALLABLE" parameterType="com.renrun.supplychain.app.entity.LogConfig">
+        call pcl_CT_FromMonth_ForNow( #{tablety},#{id},#{ty},#{val})
+    </select>
+
+</mapper>

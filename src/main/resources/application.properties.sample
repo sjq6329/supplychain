@@ -1,0 +1,48 @@
+﻿# 服务监听的端口
+server.port = 9001
+
+# 数据库配置
+spring.datasource.url=jdbc:mysql://localhost:3308/supplychain?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+spring.datasource.username=root
+spring.datasource.password=
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+
+# 如果没找到请求对应的方法，抛出异常
+spring.mvc.throw-exception-if-no-handler-found = true
+
+# 应该是自动映射资源
+spring.resources.add-mappings = true
+
+# 各微服务地址
+renrun.service.ucenter.addr = http://127.0.0.1:9002
+renrun.service.attachment.addr = http://127.0.0.1:9003
+renrun.service.fee.addr = http://127.0.0.1:9008
+renrun.service.risk.addr = http://127.0.0.1:9004
+renrun.service.account.addr = http://127.0.0.1:10000
+
+# 上传文件的保存目录
+renrun.upload.dir = ./upload
+
+# redis配置，代码里用RedisProperties
+spring.redis.host=127.0.0.1
+spring.redis.password=
+spring.redis.port=6379
+
+# 上传文件的最大大小
+spring.http.multipart.max-file-size=128KB
+
+# 一次请求的最大大小
+spring.http.multipart.max-request-size=128KB
+
+# 数据库连接池配置
+#spring.datasource.tomcat.maxWait=10000
+#spring.datasource.tomcat.maxActive=50
+spring.datasource.testOnBorrow=true
+spring.datasource.validationQuery=select 1
+spring.datasource.testWhileIdle=true
+#spring.datasource.timeBetweenEvictionRunsMillis=60000
+
+# 云配置
+renrun.yun.host=http://115.239.252.68:8816
+renrun.yun.cid=1
+renrun.yun.secret=ea91458ad29617db

@@ -1,0 +1,33 @@
+<div id="formContent">
+   <form id="AppFormSetEnterpiseInf" name="AppFormSetEnterpiseInf" class="form_biaodan">
+    <div class="form_row" table="1">
+     <div>
+      上下游企业信息
+     </div>
+     <table class="form_table" border="0" cellspacing="1" cellpadding="0" id="enterpiseInfJson">
+      <thead>
+       <tr>
+        <th>主要交易对手情况</th>
+        <th>名称</th>
+        <th>占业务比例（%）</th>
+        <th>往来时间（起）</th>
+        <th>往来时间（止）</th>
+        <th>往来时长（月）</th>
+       </tr>
+      </thead>
+      <tbody>
+      {% for row in data %}
+       <tr>
+        <td>{{ row.majorCounterparites }}</td>
+        <td>{{ row.name }}</td>
+        <td>{{ row.proOfBusiness }}</td>
+        <td>{{ row.currentTimeZ }}</td>
+        <td>{{ row.currentTimeQ }}</td>
+        <td>{{ row.currentDuration }}</td>
+       </tr>
+       {% endfor %}
+      </tbody>
+     </table>
+    </div>
+   </form>
+  </div>

@@ -1,0 +1,91 @@
+<div id="formContent">
+   <form id="appFormBusinessHistory" name="appFormBusinessHistory" class="form_biaodan">
+    <div class="form_row_item droppable" text="1">
+     <label>开始时间：</label>
+     {{ data.startTime }}
+    </div>
+    <div class="form_row_item droppable" text="1" style="width: 45%;">
+     <label>结束时间：</label>
+     {{ data.endTime }}
+    </div>
+    <div class="form_row_item droppable" text="1">
+     <label>经营地址：</label>
+     {{ data.businessAddress }}
+    </div>
+    <div class="form_row" table="1">
+     <div>
+      参与人员
+     </div>
+     <table class="form_table" id="participant" from="config" url="" stype="1" config="[{'name':'',code:'participant'}]" cellspacing="1" cellpadding="0" border="0">
+      <thead>
+       <tr>
+        <th></th>
+       </tr>
+      </thead>
+      <tbody>
+      {% for row in data.appFormSetparticipant %}
+       <tr>
+        <td>{{ row.participant }}</td>
+       </tr>
+       {% endfor %}
+      </tbody>
+     </table>
+    </div>
+    <div class="form_row">
+     <div>
+      概况：
+     </div>
+     <div>
+     {{ data.businessContent }}
+     </div>
+    </div>
+    <div class="form_row">
+     <div>
+      生产过程及结算方式：
+     </div>
+     <div>
+     {{ data.businessPurpose }}
+     </div>
+    </div>
+    <div class="form_row">
+     <div>
+      行业发展能力分析：
+     </div>
+     <div>
+     {{ data.businessApplication }}
+     </div>
+    </div>
+    <div class="form_row">
+     <div>
+      诚信记录：
+     </div>
+     <div>
+     {{ data.creditRecord }}
+     </div>
+    </div>
+    <div class="form_row">
+     <div>
+      销售流动资金投资资金及回笼情况：
+     </div>
+     <div>
+     {{ data.fundsAndReturn }}
+     </div>
+    </div>
+    <div class="form_row">
+     <div>
+      经营历史和资本累积情况：
+     </div>
+     <div>
+     {{ data.businessHistory }}
+     </div>
+    </div>
+    <div class="form_row">
+     <div>
+      其他：
+     </div>
+     <div>
+     {{ data.otherWork }}
+     </div>
+    </div>
+   </form>
+  </div>

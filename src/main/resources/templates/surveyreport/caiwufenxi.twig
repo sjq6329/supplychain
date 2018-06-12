@@ -1,0 +1,57 @@
+<div id="financeBox">
+    <form name="finance">
+        <div id="fileUpload" data-progressbox="fsUploadProgress" data-viewbox="spanButtonPlaceHolder" data-cancelbox="btnCancel"></div>
+        <input type="hidden" name="objType" value="credit" />
+        <input type="hidden" name="objId" value="133" />
+        <table class="diyfFinTable" width="100%" border="0" cellspacing="1" cellpadding="0">
+            <tbody>
+            <tr>
+                <td colspan="4" align="center" style="padding:10px 0; font-weight:bold;">财务分析(单位：元)</td>
+            </tr>
+            <tr>
+                <td>年销售额：</td>
+                <td colspan="3"><input onkeyup="System.Presentation.formatting(this)" id="monthlySales" name="monthlySales" /></td>
+            </tr>
+            <tr>
+                <td>净利润：</td>
+                <td colspan="3"><input onkeyup="System.Presentation.formatting(this)" id="netProfit" name="netProfit" /></td>
+            </tr>
+            <tr>
+                <td>毛利润：</td>
+                <td colspan="3"><input onkeyup="System.Presentation.formatting(this)" id="grossProfit" name="grossProfit" /></td>
+            </tr>
+            <tr>
+                <td>存货：</td>
+                <td colspan="3"><input onkeyup="System.Presentation.formatting(this)" id="stock" name="stock" /></td>
+            </tr>
+            <tr>
+                <td>应收账款：</td>
+                <td colspan="3"><input onkeyup="System.Presentation.formatting(this)" id="reAccount" name="reAccount" /></td>
+            </tr>
+            <tr>
+                <td>应付账款：</td>
+                <td colspan="3"><input onkeyup="System.Presentation.formatting(this)" id="payAccount" name="payAccount" /></td>
+            </tr>
+            <tr>
+                <td>固定资产：</td>
+                <td colspan="3"><input onkeyup="System.Presentation.formatting(this)" id="fixedAssets" name="fixedAssets" /></td>
+            </tr>
+            <tr>
+                <td>银行信贷额：</td>
+                <td colspan="3"><input onkeyup="System.Presentation.formatting(this)" id="bankCredit" name="bankCredit" /></td>
+            </tr>
+            <tr>
+                <td>其它账款：</td>
+                <td colspan="3"><input onkeyup="System.Presentation.formatting(this)" id="otherAccount" name="otherAccount" /></td>
+            </tr>
+            <tr>
+                <td>总负债：</td>
+                <td colspan="3"><input onkeyup="System.Presentation.formatting(this)" id="totalLiabilitie" name="totalLiabilitie" /></td>
+            </tr>
+            <tr>
+                <td colspan="4" style="padding:10px 0; font-weight:bold;">登记信息</td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
